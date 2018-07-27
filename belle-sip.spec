@@ -60,6 +60,7 @@ ANTLRJAR=`pwd`
 %cmake \
     -DENABLE_STATIC:BOOL=NO \
     -DENABLE_STRICT:BOOL=NO \
+    -DENABLE_TESTS=NO \
     -DANTLR3_JAR_PATH:PATH=$ANTLRJAR/antlr.jar \
     -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/
 

@@ -23,6 +23,7 @@ BuildRequires:	polarssl-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	bctoolbox-static-devel
 BuildRequires:	java
+BuildRequires:	cmake
 BuildConflicts:	antlr3-tool
 
 %description

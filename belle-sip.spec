@@ -21,6 +21,7 @@ Patch1:		belle-sip-1.6.3-cmake-config-location.patch
 BuildRequires:	antlr3-C-devel
 BuildRequires:	polarssl-devel
 BuildRequires:	pkgconfig(bctoolbox)
+BuildRequires:	bctoolbox-static-devel
 BuildRequires:	java
 BuildConflicts:	antlr3-tool
 

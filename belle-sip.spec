@@ -4,8 +4,8 @@
 %define __noautoreq '^libantlr3c\\.so.*$|^devel\\(libantlr3c(.*)$'
 
 Name:           belle-sip
-Version:        1.4.2
-Release:        2
+Version:        1.6.3
+Release:        1
 Summary:        Linphone sip stack
 
 Group:          Communications
@@ -14,11 +14,15 @@ URL:            http://www.linphone.org
 Source0: 	https://www.linphone.org/snapshots/sources/%{name}/%{name}-%{version}.tar.gz
 # https://github.com/antlr/website-antlr3/blob/gh-pages/download/antlr-3.4-complete.jar?raw=true
 Source1:	antlr-3.4-complete.jar
-
-BuildRequires:	antlr3c-devel
+# (wally) fix pkgconfig file contents when building with cmake
+Patch0:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-file.patch
+# (wally) allow overriding cmake config file location from cmd line
+Patch1:		belle-sip-1.6.3-cmake-config-location.patch
+BuildRequires:	antlr3-C-devel
 BuildRequires:	polarssl-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	java
+BuildConflicts:	antlr3-tool
 
 %description
 Belle-sip is an object oriented c written SIP stack used by Linphone.
@@ -44,17 +48,24 @@ Libraries and headers required to develop software with belle-sip
 
 %prep
 %setup -q
+%apply_patches
 cp %{SOURCE1} antlr.jar
 
-sed -i -e "s#antlr_java_prefixes=.*#antlr_java_prefixes=$PWD#" -e "s|-Werror||g" configure{,.ac}
+#sed -i -e "s#antlr_java_prefixes=.*#antlr_java_prefixes=$PWD#" -e "s|-Werror||g" configure{,.ac}
 
 %build
-%configure --disable-static --docdir=%{_docdir} --disable-tests --disable-static --enable-tls
+ANTLRJAR=`pwd`
+%cmake \
+    -DENABLE_STATIC:BOOL=NO \
+    -DENABLE_STRICT:BOOL=NO \
+    -DANTLR3_JAR_PATH:PATH=$ANTLRJAR/antlr.jar \
+    -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/
+
 %make
 
 
 %install
-%makeinstall_std
+%makeinstall_std -C build
 
 # remove static libraries
 rm -f %{buildroot}%{_libdir}/libbellesip.a
@@ -64,6 +75,6 @@ rm -f %{buildroot}%{_libdir}/libbellesip.la
 %{_includedir}/belle-sip
 %{_libdir}/libbellesip.so
 %{_libdir}/pkgconfig/belle-sip.pc
-
+%{_libdir}/cmake/BelleSIP/
 %files -n %libname
 %{_libdir}/libbellesip.so.%{major}*

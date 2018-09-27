@@ -5,7 +5,7 @@
 
 Name:           belle-sip
 Version:        1.6.3
-Release:        1
+Release:        2
 Summary:        Linphone sip stack
 
 Group:          Communications
@@ -19,7 +19,6 @@ Patch0:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-file.patch
 # (wally) allow overriding cmake config file location from cmd line
 Patch1:		belle-sip-1.6.3-cmake-config-location.patch
 BuildRequires:	antlr3-C-devel
-BuildRequires:	polarssl-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	bctoolbox-static-devel
 BuildRequires:	java
@@ -33,7 +32,6 @@ Belle-sip is an object oriented c written SIP stack used by Linphone.
 Summary: The belle-sip library, a part of belle-sip
 Group: System/Libraries
 Requires: antlr3-C
-Requires: polarssl
 
 %description -n %libname
 The belle-sip library, a part of belle-sip.

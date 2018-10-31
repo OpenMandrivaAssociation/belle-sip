@@ -5,7 +5,7 @@
 
 Name:           belle-sip
 Version:        1.6.3
-Release:        2
+Release:        3
 Summary:        Linphone sip stack
 
 Group:          Communications

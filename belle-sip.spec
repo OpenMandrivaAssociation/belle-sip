@@ -18,7 +18,7 @@ Source1:	antlr-3.4-complete.jar
 Patch0:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-file.patch
 # (wally) allow overriding cmake config file location from cmd line
 Patch1:		belle-sip-1.6.3-cmake-config-location.patch
-BuildRequires:	antlr3-C-devel
+BuildRequires:	antlr3c-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	bctoolbox-static-devel
 BuildRequires:	java

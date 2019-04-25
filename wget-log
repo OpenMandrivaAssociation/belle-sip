@@ -1,0 +1,11 @@
+--2019-04-25 15:35:04--  http://svnweb.mageia.org/packages/cauldron/belle-sip/current/SOURCES/belle-sip-1.6.3-cmake-fix-pkgconfig-pc-private-libs.patch?revision=1247133
+Translacja svnweb.mageia.org... 212.85.158.151
+Łączenie się z svnweb.mageia.org|212.85.158.151|:80... połączono.
+Żądanie HTTP wysłano, oczekiwanie na odpowiedź... 200 OK
+Długość: nieznana [text/plain]
+Zapis do: `belle-sip-1.6.3-cmake-fix-pkgconfig-pc-private-libs.patch?revision=1247133'
+
+                       belle-sip-1.6.3-cmake-     [<=>                                                                                               ]       0  --.-KB/s               belle-sip-1.6.3-cmake-fix-pkgconfig-pc-privat     [ <=>                                                                                              ]     788  --.-KB/s     w 0s      
+
+2019-04-25 15:35:04 (41,5 MB/s) - zapisano `belle-sip-1.6.3-cmake-fix-pkgconfig-pc-private-libs.patch?revision=1247133' [788]
+

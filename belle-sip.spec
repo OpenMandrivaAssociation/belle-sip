@@ -3,13 +3,13 @@
 %define libname %mklibname bellesip %major
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
-Name:           belle-sip
-Version:        1.6.3
-Release:        5
-Summary:        Linphone sip stack
-Group:          Communications
-License:        GPL
-URL:            http://www.linphone.org
+Name:		belle-sip
+Version:	4.4.8
+Release:	1
+Summary:	Linphone sip stack
+Group:		Communications
+License:	GPL
+URL:		http://www.linphone.org
 Source0: 	https://www.linphone.org/snapshots/sources/%{name}/%{name}-%{version}.tar.gz
 # https://github.com/antlr/website-antlr3/blob/gh-pages/download/antlr-3.4-complete.jar?raw=true
 Source1:	antlr-3.4-complete.jar

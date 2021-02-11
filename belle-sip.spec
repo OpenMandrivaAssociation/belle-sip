@@ -9,7 +9,7 @@ Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
 License:	GPL
-URL:		http://www.linphone.org
+URL:		https://www.linphone.org
 Source0: 	https://gitlab.linphone.org/BC/public/%{name}/-/archive/%{version}/%{name}-%{version}.tar.bz2
 # NOTE antlr-3.4-complete.jar is included into the source (src/antlr3c/antlr-3.4-complete.jar)
 # https://github.com/antlr/website-antlr3/blob/gh-pages/download/antlr-3.4-complete.jar?raw=true
@@ -20,11 +20,12 @@ Source0: 	https://gitlab.linphone.org/BC/public/%{name}/-/archive/%{version}/%{n
 #Patch1:		belle-sip-1.6.3-cmake-config-location.patch
 #Patch2:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-private-libs.patch
 BuildRequires:	antlr3c-devel
+BuildRequires:	cmake
+BuildRequires:	bctoolbox-static-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	bctoolbox-static-devel
 BuildRequires:	java
-BuildRequires:	cmake
+BuildRequires:  ninja
 BuildConflicts:	antlr3-tool
 
 %description
@@ -72,11 +73,11 @@ Libraries and headers required to develop software with belle-sip
     -DENABLE_STATIC:BOOL=NO \
     -DENABLE_STRICT:BOOL=NO \
     -DENABLE_TESTS=NO \
-    -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/
+    -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
+	-G Ninja
 
-%make_build
-
+%ninja_build
 
 %install
-%make_install -C build
+%ninja_install -C build
 

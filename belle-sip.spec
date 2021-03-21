@@ -4,7 +4,7 @@
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
 Name:		belle-sip
-Version:	4.4.24
+Version:	4.4.34
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
@@ -80,4 +80,3 @@ Libraries and headers required to develop software with belle-sip
 
 %install
 %ninja_install -C build
-

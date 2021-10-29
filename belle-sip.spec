@@ -4,28 +4,24 @@
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
 Name:		belle-sip
-Version:	4.4.34
+Version:	5.0.44
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
-License:	GPL
+License:	GPLv3
 URL:		https://www.linphone.org
-Source0: 	https://gitlab.linphone.org/BC/public/%{name}/-/archive/%{version}/%{name}-%{version}.tar.bz2
+Source0:	https://gitlab.linphone.org/BC/public/%{name}/-/archive/%{version}/%{name}-%{version}.tar.bz2
 # NOTE antlr-3.4-complete.jar is included into the source (src/antlr3c/antlr-3.4-complete.jar)
 # https://github.com/antlr/website-antlr3/blob/gh-pages/download/antlr-3.4-complete.jar?raw=true
 #Source1:	antlr-3.4-complete.jar
-# (wally) fix pkgconfig file contents when building with cmake
-#Patch0:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-file.patch
-# (wally) allow overriding cmake config file location from cmd line
-#Patch1:		belle-sip-1.6.3-cmake-config-location.patch
-#Patch2:		belle-sip-1.6.3-cmake-fix-pkgconfig-pc-private-libs.patch
+
 BuildRequires:	antlr3c-devel
 BuildRequires:	cmake
 BuildRequires:	bctoolbox-static-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	java
-BuildRequires:  ninja
+BuildRequires:	ninja
 BuildConflicts:	antlr3-tool
 
 %description
@@ -42,6 +38,7 @@ The belle-sip library, a part of belle-sip.
 
 %files -n %libname
 %{_libdir}/libbellesip.so.%{major}*
+%{_datadir}/belr/grammars/sdp_grammar
 
 #---------------------------------------------------------------------------
 
@@ -50,7 +47,7 @@ Summary:	Development libraries for belle-sip
 Group:		System/Libraries
 Requires:	%{libname} = %{EVRD}
 
-%description  -n %{devname}
+%description -n %{devname}
 Libraries and headers required to develop software with belle-sip
 
 %files -n %{devname}
@@ -61,22 +58,21 @@ Libraries and headers required to develop software with belle-sip
 
 %prep
 %autosetup -p1
-
 #cp %{SOURCE1} antlr.jar
-
 #sed -i -e "s#antlr_java_prefixes=.*#antlr_java_prefixes=$PWD#" -e "s|-Werror||g" configure{,.ac}
 
 #---------------------------------------------------------------------------
 
 %build
 %cmake \
-    -DENABLE_STATIC:BOOL=NO \
-    -DENABLE_STRICT:BOOL=NO \
-    -DENABLE_TESTS=NO \
-    -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
+	-DENABLE_STATIC:BOOL=NO \
+	-DENABLE_STRICT:BOOL=NO \
+	-DENABLE_TESTS=NO \
+	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
 	-G Ninja
 
 %ninja_build
 
 %install
 %ninja_install -C build
+

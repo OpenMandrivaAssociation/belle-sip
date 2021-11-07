@@ -19,6 +19,7 @@ BuildRequires:	antlr3c-devel
 BuildRequires:	cmake
 BuildRequires:	bctoolbox-static-devel
 BuildRequires:	pkgconfig(bctoolbox)
+BuildRequires:	pkgconfig(belr)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	java
 BuildRequires:	ninja

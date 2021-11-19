@@ -4,7 +4,7 @@
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
 Name:		belle-sip
-Version:	5.0.44
+Version:	5.0.51
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications

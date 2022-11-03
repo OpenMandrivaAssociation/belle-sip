@@ -1,10 +1,13 @@
 %define major 1
+%define libname %mklibname bellesip
 %define devname %mklibname bellesip -d
-%define libname %mklibname bellesip %major
+
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
+%bcond_with     tests
+
 Name:		belle-sip
-Version:	5.1.61
+Version:	5.1.67
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
@@ -67,8 +70,8 @@ Libraries and headers required to develop software with belle-sip
 %build
 %cmake \
 	-DENABLE_STATIC:BOOL=NO \
-	-DENABLE_STRICT:BOOL=NO \
-	-DENABLE_TESTS=NO \
+	-DENABLE_STRICT:BOOL=YES \
+	-DENABLE_TESTS=%{?with_tests:ON}%{!?with_tests:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
 	-G Ninja
 

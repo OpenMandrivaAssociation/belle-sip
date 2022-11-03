@@ -4,7 +4,9 @@
 
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
-%bcond_with     tests
+%bcond_with	static
+%bcond_without	strict
+%bcond_with	tests
 
 Name:		belle-sip
 Version:	5.1.67
@@ -69,12 +71,11 @@ Libraries and headers required to develop software with belle-sip
 
 %build
 %cmake \
-	-DENABLE_STATIC:BOOL=NO \
-	-DENABLE_STRICT:BOOL=YES \
+	-DENABLE_STRICT:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
+	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
 	-DENABLE_TESTS=%{?with_tests:ON}%{!?with_tests:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
 	-G Ninja
-
 %ninja_build
 
 %install

@@ -5,7 +5,7 @@
 %global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
 
 %bcond_with	static
-%bcond_without	strict
+%bcond_with	strict
 %bcond_with	tests
 
 Name:		belle-sip

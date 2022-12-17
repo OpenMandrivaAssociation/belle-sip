@@ -64,6 +64,7 @@ Libraries and headers required to develop software with belle-sip
 
 %prep
 %autosetup -p1
+
 #cp %{SOURCE1} antlr.jar
 #sed -i -e "s#antlr_java_prefixes=.*#antlr_java_prefixes=$PWD#" -e "s|-Werror||g" configure{,.ac}
 

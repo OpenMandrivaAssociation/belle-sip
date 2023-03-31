@@ -10,7 +10,7 @@
 
 Name:		belle-sip
 Version:	5.2.37
-Release:	1
+Release:	2
 Summary:	Linphone sip stack
 Group:		Communications
 License:	GPLv3

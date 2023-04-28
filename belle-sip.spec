@@ -9,8 +9,8 @@
 %bcond_with	tests
 
 Name:		belle-sip
-Version:	5.2.37
-Release:	2
+Version:	5.2.53
+Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
 License:	GPLv3

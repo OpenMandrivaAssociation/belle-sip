@@ -19,10 +19,10 @@ Source0:	https://gitlab.linphone.org/BC/public/%{name}/-/archive/%{version}/%{na
 # NOTE antlr-3.4-complete.jar is included into the source (src/antlr3c/antlr-3.4-complete.jar)
 # https://github.com/antlr/website-antlr3/blob/gh-pages/download/antlr-3.4-complete.jar?raw=true
 #Source1:	antlr-3.4-complete.jar
+Patch0:		belle-sip-5.3.6-cmake-fix_cmake_path.patch
 
 BuildRequires:	antlr3c-devel
 BuildRequires:	cmake
-BuildRequires:	bctoolbox-static-devel
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(belr)
 BuildRequires:	pkgconfig(zlib)
@@ -33,6 +33,9 @@ BuildConflicts:	antlr3-tool
 %description
 Belle-sip is an object oriented c written SIP stack used by Linphone.
 
+%files
+%{_bindir}/%{name}-tester
+%{_datadir}/%{name}-tester/
 #---------------------------------------------------------------------------
 
 %package -n %{libname}
@@ -43,7 +46,7 @@ Group:		System/Libraries
 The belle-sip library, a part of belle-sip.
 
 %files -n %libname
-%{_libdir}/libbellesip.so.%{major}*
+%{_libdir}/libbelle-sip.so.%{major}*
 %{_datadir}/belr/grammars/sdp_grammar
 
 #---------------------------------------------------------------------------
@@ -58,9 +61,9 @@ Libraries and headers required to develop software with belle-sip
 
 %files -n %{devname}
 %{_includedir}/belle-sip
-%{_libdir}/libbellesip.so
+%{_libdir}/libbelle-sip.so
 %{_libdir}/pkgconfig/belle-sip.pc
-%{_libdir}/cmake/BelleSIP/
+%{_datadir}/cmake/BelleSIP/
 
 %prep
 %autosetup -p1

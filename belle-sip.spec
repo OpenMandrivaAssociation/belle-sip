@@ -2,7 +2,8 @@
 %define libname %mklibname bellesip
 %define devname %mklibname bellesip -d
 
-%global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
+#global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
+%global __requires_exclude cmake\\(tunnel\\)|cmake\\(Tunnel\\)
 
 %bcond_with	static
 %bcond_with	strict

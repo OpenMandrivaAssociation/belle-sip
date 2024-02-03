@@ -10,7 +10,7 @@
 %bcond_with	tests
 
 Name:		belle-sip
-Version:	5.3.6
+Version:	5.3.15
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
@@ -37,6 +37,7 @@ Belle-sip is an object oriented c written SIP stack used by Linphone.
 %files
 %{_bindir}/%{name}-tester
 %{_datadir}/%{name}-tester/
+
 #---------------------------------------------------------------------------
 
 %package -n %{libname}

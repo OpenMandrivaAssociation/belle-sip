@@ -2,7 +2,8 @@
 %define libname %mklibname bellesip
 %define devname %mklibname bellesip -d
 
-#global __requires_exclude devel\\(libantlr3c\\)|devel\\(libantlr3c\\(64bit\\)\\)
+# exclude unwanted cmake requires
+%global __provides_exclude_from ^%{_datadir}/cmake/.*/Find.*cmake$
 %global __requires_exclude cmake\\(tunnel\\)|cmake\\(Tunnel\\)
 
 %bcond_with	static
@@ -11,7 +12,7 @@
 
 Name:		belle-sip
 Version:	5.3.15
-Release:	1
+Release:	3
 Summary:	Linphone sip stack
 Group:		Communications
 License:	GPLv3

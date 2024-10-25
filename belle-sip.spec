@@ -11,7 +11,7 @@
 %bcond_with	tests
 
 Name:		belle-sip
-Version:	5.3.83
+Version:	5.3.93
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications

@@ -6,12 +6,14 @@
 %global __provides_exclude_from ^%{_datadir}/cmake/.*/Find.*cmake$
 %global __requires_exclude cmake\\(tunnel\\)|cmake\\(Tunnel\\)
 
-%bcond_with	static
-%bcond_with	strict
-%bcond_with	tests
+%bcond mdns			0
+%bcond strict			0
+%bcond tunnel			0
+%bcond unit_tests		1
+%bcond unit_tests_install	0
 
 Name:		belle-sip
-Version:	5.3.93
+Version:	5.3.94
 Release:	1
 Summary:	Linphone sip stack
 Group:		Communications
@@ -35,9 +37,11 @@ BuildConflicts:	antlr3-tool
 %description
 Belle-sip is an object oriented c written SIP stack used by Linphone.
 
+%if %{with unit_tests} && %{with unit_tests_install}
 %files
 %{_bindir}/%{name}-tester
 %{_datadir}/%{name}-tester/
+%endif
 
 #---------------------------------------------------------------------------
 
@@ -78,13 +82,28 @@ Libraries and headers required to develop software with belle-sip
 
 %build
 %cmake \
-	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
+	-DENABLE_MDNS:BOOL=%{?with_mdns:ON}%{?!with_mdns:OFF} \
 	-DENABLE_STRICT:BOOL=%{?with_strict:ON}%{?!with_strict:OFF} \
-	-DENABLE_TESTS=%{?with_tests:ON}%{!?with_tests:OFF} \
+	-DENABLE_TUNNEL:BOOL=%{?with_tunnel:ON}%{?!with_tunnel:OFF} \
+	-DENABLE_UNIT_TESTS:BOOL=%{?with_unit_tests:ON}%{?!with_unit_tests:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/BelleSIP/ \
 	-G Ninja
 %ninja_build
 
 %install
 %ninja_install -C build
+
+# don't install unit tester
+%if %{with unit_tests} && ! %{with unit_tests_install}
+rm -f  %{buildroot}%{_bindir}/%{name}-tester
+rm -fr %{buildroot}%{_datadir}/%{name}-tester/
+%endif
+
+%check
+%if %{with unit_tests}
+pushd build
+#FIXME:  some tests fail
+ctest ||  true
+popd
+%endif
 

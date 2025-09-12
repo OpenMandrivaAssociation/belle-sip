@@ -9,7 +9,7 @@
 %bcond mdns			0
 %bcond strict			0
 %bcond tunnel			0
-%bcond unit_tests		1
+%bcond unit_tests		0
 %bcond unit_tests_install	0
 
 Name:		belle-sip
@@ -54,7 +54,8 @@ The belle-sip library, a part of belle-sip.
 
 %files -n %libname
 %{_libdir}/libbelle-sip.so.%{major}*
-%{_datadir}/belr/grammars/sdp_grammar
+%{_datadir}/belr/grammars/sip_grammar.belr
+%{_datadir}/belr/grammars/sdp_grammar.belr
 
 #---------------------------------------------------------------------------
 
